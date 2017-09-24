@@ -2,17 +2,32 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import Home from './components/home'
 import About from './components/about'
-import Menu from './components/menu'
+import MenuComponent from './components/menu'
 
-const App = () => (
+import { Container, Header } from 'semantic-ui-react'
+
+const style = {
+    h1: {
+        marginTop: '3em',
+    }
+};
+
+const ResponsiveLayout = () => (
     <div>
-        <Menu></Menu>
-
-        <main>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/about-us" component={About} />
-        </main>
+        <MenuComponent></MenuComponent>
+        <Header
+            as='h1'
+            content='Github Users Search'
+            style={style.h1}
+            textAlign='center'
+        />
+        <Container>
+            <main>
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/about-us" component={About} />
+            </main>
+        </Container>
     </div>
 );
 
-export default App;
+export default ResponsiveLayout
