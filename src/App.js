@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Container } from 'semantic-ui-react'
-import  Menu from './components/Menu';
+import React from 'react';
+import { Route } from 'react-router-dom'
+import Home from './components/home'
+import About from './components/about'
+import Menu from './components/menu'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-          <Menu></Menu>
-          <Container>
-          </Container>
-      </div>
-    );
-  }
-}
+const App = () => (
+    <div>
+        <Menu></Menu>
+
+        <main>
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/about-us" component={About} />
+        </main>
+    </div>
+);
 
 export default App;
