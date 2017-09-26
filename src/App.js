@@ -8,7 +8,7 @@ import { Container, Header } from 'semantic-ui-react'
 
 const style = {
     h1: {
-        marginTop: '3em',
+        padding: '2rem 0'
     }
 };
 

@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
-
+import {combineReducers} from 'redux'
 import {
     RECEIVE_USERS,
     REQUEST_USERS,
@@ -43,7 +41,9 @@ function usersByUsername(state = {}, action) {
     switch (action.type) {
         case REQUEST_USERS:
         case RECEIVE_USERS:
-            return Object.assign({}, state, users(state[action.user], action));
+            return Object.assign({}, state, {
+                [action.user]: users(state[action.user], action)
+            });
         default:
             return state
     }
@@ -51,8 +51,7 @@ function usersByUsername(state = {}, action) {
 
 const rootReducer = combineReducers({
     selectedUser,
-    usersByUsername,
-    routing: routerReducer
+    usersByUsername
 });
 
-export default rootReducer;
+export default rootReducer
