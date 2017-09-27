@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import Home from './components/home'
 import About from './components/about'
 import MenuComponent from './components/menu'
 
-import { Container, Header } from 'semantic-ui-react'
+import {Container, Header} from 'semantic-ui-react'
 
 const style = {
     h1: {
@@ -23,8 +23,11 @@ const ResponsiveLayout = () => (
         />
         <Container>
             <main>
-                <Route exact path="/home" component={Home} />
-                <Route exact path="/about-us" component={About} />
+                <Route exact path="/" render={() => (
+                    <Redirect to="/home"/>
+                )}/>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/about-us" component={About}/>
             </main>
         </Container>
     </div>

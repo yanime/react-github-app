@@ -4,7 +4,7 @@ import { Image, List } from 'semantic-ui-react'
 class UserList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { userList: props.userList};
+        this.state = { userList: props.userList ? props.userList : []};
     }
     render() {
         const {userList} = this.state

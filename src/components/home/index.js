@@ -1,9 +1,9 @@
 import React from 'react';
 import store from '../../store'
-import Search  from '../search';
+import Search from '../search';
 import Loader from '../loader';
 import UserList from '../list';
-import { Container } from 'semantic-ui-react';
+import {Container} from 'semantic-ui-react';
 import {fetchUsers} from "../../actions/index";
 import {connect} from 'react-redux'
 
@@ -24,28 +24,18 @@ const style = {
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { userList: [], isFetching: false };
+        this.state = {userList: [], isFetching: false};
     }
 
-    //todo check if correct
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isFetching !== this.props.isFetching) {
-            this.setState({isFetching: nextProps.isFetching});
-        }
-        if (nextProps.userList !== this.props.userList) {
-            this.setState({userList: nextProps.userList});
-        }
-    }
-
-    onSearch(username){
+    onSearch(username) {
         store.dispatch(fetchUsers(username))
     }
 
-    renderResult(){
-        if(this.state.isFetching){
+    renderResult() {
+        if (this.props.usersByUsername.isFetching) {
             return <Loader></Loader>
         }
-        return <UserList userList={this.state.userList}></UserList>
+        return <UserList userList={this.props.usersByUsername.items}></UserList>
     }
 
     render() {
@@ -62,12 +52,9 @@ class Home extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        isFetching: state.usersByUsername.isFetching,
-        userList: state.usersByUsername.items
-    }
-}
+const mapStateToProps = (state) => ({
+    ...state
+});
 
 export default connect(
     mapStateToProps,
