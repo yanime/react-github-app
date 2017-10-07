@@ -5,6 +5,7 @@ import About from './components/about'
 import MenuComponent from './components/menu'
 
 import {Container, Header} from 'semantic-ui-react'
+import './App.css'
 
 const style = {
     h1: {
