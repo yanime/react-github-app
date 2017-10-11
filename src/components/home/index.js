@@ -61,7 +61,23 @@ class Home extends React.Component {
         } else if (this.props.usersByUsername.isFetching) {
             return <Loader></Loader>
         }
-        return <UserList userList={this.props.usersByUsername.items}></UserList>
+        return <UserList userList={this.props.usersByUsername.items} activePage={this.state.activePage}></UserList>
+    }
+
+    renderPagination() {
+        if(this.props.usersByUsername.items && this.props.usersByUsername.items.length > 0){
+            return <ReactPaginate previousLabel={"previous"}
+                                  nextLabel={"next"}
+                                  breakLabel={<a href="">...</a>}
+                                  breakClassName={"break-me"}
+                                  pageCount={this.props.usersByUsername.total_count}
+                                  marginPagesDisplayed={2}
+                                  pageRangeDisplayed={5}
+                                  onPageChange={this.handlePageClick}
+                                  containerClassName={"pagination"}
+                                  subContainerClassName={"pages pagination"}
+                                  activeClassName={"active"} />
+        }
     }
 
     render() {
@@ -72,17 +88,7 @@ class Home extends React.Component {
                     <div style={style.resultContainer}>
                         {this.renderResult()}
                     </div>
-                    <ReactPaginate previousLabel={"previous"}
-                                   nextLabel={"next"}
-                                   breakLabel={<a href="">...</a>}
-                                   breakClassName={"break-me"}
-                                   pageCount={this.props.usersByUsername.total_count}
-                                   marginPagesDisplayed={2}
-                                   pageRangeDisplayed={5}
-                                   onPageChange={this.handlePageClick}
-                                   containerClassName={"pagination"}
-                                   subContainerClassName={"pages pagination"}
-                                   activeClassName={"active"} />
+                    {this.renderPagination()}
                 </div>
             </Container>
         );

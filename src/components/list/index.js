@@ -26,7 +26,7 @@ class UserList extends React.Component {
             <span>No users found</span>
           </div>
         ) : (
-          <List ordered>
+          <List>
             {users}
           </List>
         )}

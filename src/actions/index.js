@@ -29,7 +29,7 @@ function receiveUsers(user, json) {
 }
 
 export function fetchUsers(user, page) {
-  let queryString = "?q=" + user + "&page=" + page;
+  let queryString = "?q=" + user + "&page=" + page + "&per_page=10";
   return function(dispatch) {
     dispatch(requestUsers(user));
 
